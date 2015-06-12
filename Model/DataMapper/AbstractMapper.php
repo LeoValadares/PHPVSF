@@ -13,7 +13,6 @@ use Base\Model\AbstractModel as AbstractModel;
 require_once __DIR__ . "/../AbstractModel.php";
 require_once "IMapperInterface.php";
 require_once "IDatabaseAdapterInterface.php";
-require_once "QueryBuilder.php";
 
  class AbstractMapper implements IMapperInterface
 {
