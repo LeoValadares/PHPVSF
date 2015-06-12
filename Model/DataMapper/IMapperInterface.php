@@ -4,7 +4,7 @@ namespace Base\DataMapper;
 
 use Base\Model\AbstractModel as AbstractModel;
 require_once "../../configuration.php";
-require_once PATH . "/Model/DataMapper/AbstractMapper.php";
+require_once PATH . "/Model/DataMapper/ModelMapper.php";
 
 interface IMapperInterface
 {
