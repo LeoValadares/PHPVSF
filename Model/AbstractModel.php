@@ -1,10 +1,8 @@
 <?php
 
-namespace Base\Model;
-
 abstract class AbstractModel
 {
-    private $id;
+    protected $id;
 
     public function getId()
     {

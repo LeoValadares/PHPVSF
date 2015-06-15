@@ -1,7 +1,5 @@
 <?php
 
-namespace Base\DataMapper;
-
 interface IDBAdapterInterface
 {
     public function connect();

@@ -1,7 +1,5 @@
 <?php
 
-namespace Util\Model\DataMapper;
-
 //disabling strict warnings due to use of php function end
 error_reporting(E_ALL & ~E_STRICT);
 

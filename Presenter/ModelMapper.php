@@ -1,20 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: leo
- * Date: 5/28/15
- * Time: 1:12 AM
- */
 
-namespace Base\DataMapper;
-
-use Base\Model\AbstractModel as AbstractModel;
-
+require_once __DIR__ . "/../configuration.php";
 require_once PATH . "/Presenter/IMapperInterface.php";
 require_once PATH . "/Model/AbstractModel.php";
-require_once PATH . "/Model/DataMapper/IDatabaseAdapterInterface.php";
+require_once PATH . "/Model/DataMapper/IDBAdapterInterface.php";
 
- abstract class ModelMapper implements IMapperInterface
+class ModelMapper implements IMapperInterface
 {
     protected $databaseTable;
     protected $databaseAdapter;
@@ -28,8 +19,8 @@ require_once PATH . "/Model/DataMapper/IDatabaseAdapterInterface.php";
     public function find($id)
     {
         $this->databaseAdapter->connect();
-        $this->databaseAdapter->select($this->databaseTable);
-        $fetched = $this->databaseAdapter->fetch($this->databaseTable, $id);
+        $this->databaseAdapter->select($this->databaseTable, ["id" => $id]);
+        $fetched = $this->databaseAdapter->fetch();
         $this->databaseAdapter->disconnect();
         return $fetched;
     }
@@ -43,21 +34,16 @@ require_once PATH . "/Model/DataMapper/IDatabaseAdapterInterface.php";
         return $fetched;
     }
 
-    public function save(array $instances = array())
+    public function save(AbstractModel $instance)
     {
-        $insertedIds = array();
-        foreach($instances as $instance)
-        {
-            if(!($instance instanceof AbstractModel))
-            {
-                throw new Exception("Cannot save objects that aren't AbstractModel instances");
-            }
-            $this->databaseAdapter->connect();
-            $this->databaseAdapter->insert($this->databaseTable, $instance->toArray());
-            $insertedIds[] = $this->databaseAdapter->getLastInsertedId();
-
+        if (!($instance instanceof AbstractModel)) {
+            throw new Exception("Cannot save objects that aren't AbstractModel instances");
         }
-        return $insertedIds;
+        $this->databaseAdapter->connect();
+        $this->databaseAdapter->insert($this->databaseTable, $instance->toArray());
+        $insertedId = $this->databaseAdapter->getLastInsertedId();
+
+        return $insertedId;
     }
 
     public function update(AbstractModel $instance)
@@ -73,6 +59,7 @@ require_once PATH . "/Model/DataMapper/IDatabaseAdapterInterface.php";
         $this->databaseAdapter->delete($this->databaseTable, ["id" => $id]);
         $affectedRowsCount = $this->databaseAdapter->countAffectedRows();
         $this->databaseAdapter->disconnect();
+
         return $affectedRowsCount;
     }
 }

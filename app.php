@@ -1,17 +1,13 @@
 <?php
 
-require_once "Util/PDOAdapter.php";
+require_once "configuration.php";
 require_once "carro.php";
+require_once PATH . "/View/GenericView.php";
+require_once PATH . "/Presenter/ModelMapper.php";
+require_once PATH . "/Util/PDOAdapter.php";
 
-$rc = new ReflectionClass("carro");
-$pdo = new PDOAdapter($rc, "mysql:host=127.0.0.1;dbname=pdotest", "root");
-$pdo->connect();
-//$consulta = ["modelo" => "500"];
-//$pdo->select("carro", $consulta);
-//$pdo->execute([":modelo" => "500"]);
-$pdo->delete("carro");
-print_r($pdo->countAffectedRows());
-//$pdo->execute(array("id" => "3", "modelo" => "Picanto"));
-//var_dump($pdo->fetchAll());
-$pdo->disconnect();
-
+$pdoAdapter = new PDOAdapter(new ReflectionClass("carro"), "mysql:host=127.0.0.1;dbname=pdotest", "root");
+$modelMapper = new ModelMapper("carro", $pdoAdapter);
+$genericView = new GenericView($modelMapper);
+$genericView->find(1);
+$genericView->findAll(["modelo" => "Corvette"]);

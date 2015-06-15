@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: leo
- * Date: 5/29/15
- * Time: 2:28 AM
- */
 
-//namespace Util\Model\DataMapper;
 require_once __DIR__ . "/../configuration.php";
+require_once PATH ."/Util/PDOQueryBuilder.php";
 require_once PATH . "/Model/DataMapper/IDBAdapterInterface.php";
-require_once "PDOQueryBuilder.php";
+require_once PATH .  "/Util/PDOQueryBuilder.php";
 
 class PDOAdapter implements IDBAdapterInterface
 {
