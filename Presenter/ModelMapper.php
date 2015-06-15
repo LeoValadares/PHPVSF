@@ -10,11 +10,11 @@ namespace Base\DataMapper;
 
 use Base\Model\AbstractModel as AbstractModel;
 
-require_once PATH . "/../AbstractModel.php";
-require_once PATH . "IMapperInterface.php";
-require_once PATH . "IDatabaseAdapterInterface.php";
+require_once PATH . "/Presenter/IMapperInterface.php";
+require_once PATH . "/Model/AbstractModel.php";
+require_once PATH . "/Model/DataMapper/IDatabaseAdapterInterface.php";
 
- class ModelMapper implements IMapperInterface
+ abstract class ModelMapper implements IMapperInterface
 {
     protected $databaseTable;
     protected $databaseAdapter;
@@ -43,18 +43,27 @@ require_once PATH . "IDatabaseAdapterInterface.php";
         return $fetched;
     }
 
-    public function save(AbstractModel $instance)
+    public function save(array $instances = array())
     {
-        $this->databaseAdapter->connect();
-        $this->databaseAdapter->insert($this->databaseTable, $instance->toArray());
-        $lastInsertId = $this->databaseAdapter->getLastInsertedId();
-        return $lastInsertId;
+        $insertedIds = array();
+        foreach($instances as $instance)
+        {
+            if(!($instance instanceof AbstractModel))
+            {
+                throw new Exception("Cannot save objects that aren't AbstractModel instances");
+            }
+            $this->databaseAdapter->connect();
+            $this->databaseAdapter->insert($this->databaseTable, $instance->toArray());
+            $insertedIds[] = $this->databaseAdapter->getLastInsertedId();
+
+        }
+        return $insertedIds;
     }
 
     public function update(AbstractModel $instance)
     {
         $this->databaseAdapter->connect();
-        $this->databaseAdapter->update($this->databaseTable, $instance->toArray());
+        $this->databaseAdapter->update($this->databaseTable, $instance->toArray(), ["id" => $instance->getId()]);
         $this->databaseAdapter->disconnect();
     }
 
