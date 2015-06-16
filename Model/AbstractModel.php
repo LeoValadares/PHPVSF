@@ -8,6 +8,6 @@ abstract class AbstractModel
     {
         return $this->id;
     }
-
+    public abstract function getClassName();
     public abstract function toArray();
 }

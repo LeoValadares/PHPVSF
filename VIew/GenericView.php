@@ -23,7 +23,8 @@ class GenericView implements IViewInterface
 
     public function find($id)
     {
-        print_r($this->mapper->find($id));
+        $object = $this->mapper->find($id);
+        include (PATH . "/Public/find.php");
     }
 
     public function findAll(array $parameters = array())

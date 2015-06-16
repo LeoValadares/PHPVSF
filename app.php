@@ -10,4 +10,3 @@ $pdoAdapter = new PDOAdapter(new ReflectionClass("carro"), "mysql:host=127.0.0.1
 $modelMapper = new ModelMapper("carro", $pdoAdapter);
 $genericView = new GenericView($modelMapper);
 $genericView->find(1);
-$genericView->findAll(["modelo" => "Corvette"]);
