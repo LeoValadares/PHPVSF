@@ -8,7 +8,7 @@
     <?php
         $objectId = $object->getId();
         $objectClass = $object->getClassName();
-        echo "<h1>$objectClass</h1><br />";
+        echo "<h2>$objectClass</h2><br />";
         echo "<h2>$objectId</h2><br />";
         echo "<tr>";
         foreach($object->toArray() as $variableName => $variableValue)
