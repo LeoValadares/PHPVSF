@@ -29,7 +29,8 @@ class GenericView implements IViewInterface
 
     public function findAll(array $parameters = array())
     {
-        print_r($this->mapper->findAll($parameters));
+        $objects = $this->mapper->findAll($parameters);
+        include (PATH . "/Public/findAll.php");
     }
 
     public function save(AbstractModel $instance)
