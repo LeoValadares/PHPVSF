@@ -1,7 +1,7 @@
 <?php
 
-require_once "configuration.php";
-require_once "carro.php";
+require_once __DIR__ . "configuration.php";
+require_once PATH . "carro.php";
 require_once PATH . "/View/GenericView.php";
 require_once PATH . "/Presenter/ModelMapper.php";
 require_once PATH . "/Util/PDOAdapter.php";
