@@ -1,9 +1,30 @@
-Options +FollowSymLinks
+Options +FollowSymLinks -Indexes
+
+# Enalbes url rewriting
 RewriteEngine On
+
+# Use the RewriteBase property if your website is not located on the server's document root.
+# You should put the desired document root relative to the http server document root like:
+# "/current/document/root/
 RewriteBase /phpvsf/
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
+# Routes all url calls to index.php
 RewriteRule ^(.+)$ index.php?path=$1 [QSA,L]
+
+# Fobrids access to php scripts hosted on the server
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+</Files>
+
+# Allows only the document root index.php to be accessed, making it the only entrypoint
+# establishing the url routing logic behind the framework
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>

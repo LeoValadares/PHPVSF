@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../configuration.php";
-require_once PATH . "/Presenter/IMapperInterface.php";
+require_once PATH . "/Mapper/IMapperInterface.php";
 require_once PATH . "/Model/AbstractModel.php";
 require_once PATH . "/Model/DataMapper/IDBAdapterInterface.php";
 
