@@ -1,9 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../configuration.php";
-require_once PATH ."/Util/PDOQueryBuilder.php";
-require_once PATH . "/Model/DataMapper/IDBAdapterInterface.php";
-require_once PATH .  "/Util/PDOQueryBuilder.php";
+require_once __DIR__ . "/../../../configuration.php";
+require_once PATH . "/Base/Util/Database/PDOQueryBuilder.php";
+require_once PATH . "/Base/Model/DataMapper/IDBAdapterInterface.php";
 
 class PDOAdapter implements IDBAdapterInterface
 {

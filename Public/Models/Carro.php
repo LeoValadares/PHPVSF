@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . "/configuration.php";
-require_once PATH . "/Model/AbstractModel.php";
+require_once __DIR__ . "/../../configuration.php";
+require_once PATH . "/Base/Model/AbstractModel.php";
 
-class carro extends AbstractModel
+class Carro extends AbstractModel
 {
     private $modelo;
 

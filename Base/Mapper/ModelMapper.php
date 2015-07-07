@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . "/../configuration.php";
-require_once PATH . "/Mapper/IMapperInterface.php";
-require_once PATH . "/Model/AbstractModel.php";
-require_once PATH . "/Model/DataMapper/IDBAdapterInterface.php";
+require_once __DIR__ . "/../../configuration.php";
+require_once PATH . "/Base/Mapper/IMapperInterface.php";
+require_once PATH . "/Base/Model/AbstractModel.php";
+require_once PATH . "/Base/Model/DataMapper/IDBAdapterInterface.php";
 
 class ModelMapper implements IMapperInterface
 {

@@ -6,7 +6,7 @@
  * Date: 6/15/15
  * Time: 6:10 PM
  */
-interface IViewInterface
+interface IControllerInterface
 {
     public function home();
     public function find($id);

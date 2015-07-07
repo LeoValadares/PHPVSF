@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . "/../configuration.php";
-require_once PATH . "/View/IViewInterface.php";
-require_once PATH . "/Mapper/IMapperInterface.php";
-require_once PATH. "/Model/AbstractModel.php";
+require_once __DIR__ . "/../../configuration.php";
+require_once PATH . "/Base/Controller/IControllerInterface.php";
+require_once PATH . "/Base/Mapper/IMapperInterface.php";
+require_once PATH . "/Base/Model/AbstractModel.php";
 
-class GenericView implements IViewInterface
+class GenericController implements IControllerInterface
 {
     private $model;
     private $mapper;
@@ -24,13 +24,13 @@ class GenericView implements IViewInterface
     public function find($id)
     {
         $object = $this->mapper->find($id);
-        include (PATH . "/Public/find.php");
+        include(PATH . "/Public/find.php");
     }
 
     public function findAll(array $parameters = array())
     {
         $objects = $this->mapper->findAll($parameters);
-        include (PATH . "/Public/findAll.php");
+        include(PATH . "/Public/findAll.php");
     }
 
     public function save(AbstractModel $instance)
