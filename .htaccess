@@ -6,7 +6,7 @@ RewriteEngine On
 # Use the RewriteBase property if your website is not located on the server's document root.
 # You should put the desired document root relative to the http server document root like:
 # "/current/document/root/
-#RewriteBase /phpvsf/
+RewriteBase /phpvsf/
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

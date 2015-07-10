@@ -1,21 +1,21 @@
 <?php
 
+//starts session if not started
+if (session_status() == PHP_SESSION_ACTIVE)
+{
+    echo session_id();
+}
+else
+{
+    session_start();
+}
+
 require_once __DIR__ . "/../configuration.php";
 
 //auto imports all public controllers so they can be created when needed
 foreach(glob(PATH . "/Public/Controllers/*.php") as $filename)
 {
     require_once($filename);
-}
-
-//starts session if not started
-if (!session_start())
-{
-    echo "SESSION STARTED";
-}
-else
-{
-    echo session_id();
 }
 
 //explodes the url in the slash into an array

@@ -1,5 +1,6 @@
 <?php
 
+define("SITE_NAME", "localhost/phpvsf/");
 
 define("PATH", __DIR__);
 
@@ -18,3 +19,4 @@ define("DB_NAME", "pdotest");
 define("DB_FQDN", DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME);
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
+
