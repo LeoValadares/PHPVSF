@@ -8,7 +8,7 @@ class UserMapper extends ModelMapper
 {
     public function __construct()
     {
-        $databaseAdapter = new PDOAdapter(new ReflectionClass("user"), DB_FQDN, DB_USER, DB_PASSWORD, DB_OPTIONS);
+        $databaseAdapter = new PDOAdapter(new ReflectionClass("user"), DB_FQDN, DB_USER, DB_PASSWORD);
         parent::__construct("user", $databaseAdapter);
     }
 

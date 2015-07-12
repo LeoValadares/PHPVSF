@@ -10,6 +10,8 @@ define("APPLICATION_NAME", "phpvsf");
 
 define("LEVELS_FROM_DOCUMENT_ROOT", 1);
 
+define("HASH_ENCRYPTION", "sha512");
+
 ////////////////////////////////////////////
 //DATABASE CONFIGURATION
 ////////////////////////////////////////////
@@ -19,4 +21,5 @@ define("DB_NAME", "pdotest");
 define("DB_FQDN", DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME);
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
+define("DB_APTIONS", null);
 

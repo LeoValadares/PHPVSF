@@ -7,7 +7,7 @@ require_once PATH . "/Base/Mapper/IMapperInterface.php";
 require_once PATH . "/Base/Mapper/ModelMapper.php";
 require_once PATH . "/Base/Model/AbstractModel.php";
 require_once PATH . "/Public/Models/Carro.php";
-require_once PATH . "/Public/Controllers/LoginController.php";
+require_once PATH . "/Base/Util/Login/LoginController.php";
 
 class CarroController implements IControllerInterface
 {
@@ -17,7 +17,7 @@ class CarroController implements IControllerInterface
 
     public function __construct()
     {
-        $pdoAdapter = new PDOAdapter(new ReflectionClass("Carro"), DB_FQDN, DB_USER);
+        $pdoAdapter = new PDOAdapter(new ReflectionClass("Carro"), DB_FQDN, DB_USER, DB_PASSWORD);
         $this->mapper = new ModelMapper("Carro", $pdoAdapter);
         $this->loginManager = new LoginController();
     }

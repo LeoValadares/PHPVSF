@@ -28,17 +28,14 @@ class LoginController
         }
         else
         {
-            //$userMapper = new UserMapper();
-            //$userCredential = $userMapper->verifyUser(['email' => $_POST['email'], 'password' => crypt($_POST['password'])]);
+            $userMapper = new UserMapper();
+            $userCredential = $userMapper->verifyUser(['email' => $_POST['email'], 'password' => hash(HASH_ENCRYPTION, $_POST['password'])]);
 
-            $userCredential = new User();
-            $userCredential->setEmail($_POST['email']);
-            $userCredential->setPassword($_POST['password']);
-
-            if (1 == 2)
+            if ($userCredential == null)
             {
                 header("Location: http://" . SITE_NAME . __CLASS__ . "/" . __METHOD__);
-            } else
+            }
+            else
             {
                 $_SESSION['login'] = $userCredential;
             }
@@ -53,5 +50,4 @@ class LoginController
     {
         session_destroy();
     }
-
 }
