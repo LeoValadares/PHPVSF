@@ -7,6 +7,22 @@ class Carro extends AbstractModel
 {
     private $modelo;
 
+    /**
+     * @return mixed
+     */
+    public function getModelo()
+    {
+        return $this->modelo;
+    }
+
+    /**
+     * @param mixed $modelo
+     */
+    public function setModelo($modelo)
+    {
+        $this->modelo = $modelo;
+    }
+
     public function getClassName()
     {
         return __CLASS__;

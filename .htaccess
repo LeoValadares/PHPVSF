@@ -11,9 +11,9 @@ RewriteBase /phpvsf/
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
-
-# Routes all url calls to index.php
 RewriteRule ^(.+)$ Public/index.php?path=$1 [QSA,L]
+
+ErrorDocument 403 http://localhost/phpvsf/index
 
 #Fobrids access to php scripts hosted on the server
 <Files *.php>

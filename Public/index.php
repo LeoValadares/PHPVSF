@@ -1,5 +1,8 @@
 <?php
 
+//error_reporting(0);
+//@ini_set('display_errors', 0);
+
 //starts session if not started
 if (session_status() == PHP_SESSION_ACTIVE)
 {
@@ -21,8 +24,26 @@ foreach(glob(PATH . "/Public/Controllers/*.php") as $filename)
 //explodes the url in the slash into an array
 $params = explode("/", $_GET['path']);
 
-$selectedController = ($params[0] == null) ? "index" : $params[0];
-$selectedMethod = ($params[1] == null) ? "home" : $params[1];
+if(count($params) >= 1)
+{
+    $selectedController = $params[0];
+}
+else
+{
+    $selectedController = "index";
+}
+
+if(count($params) >= 2)
+{
+    $selectedMethod = $params[1];
+}
+else
+{
+    $selectedMethod = "home";
+}
+
+//$selectedController = ($params[0] == null) ? "index" : $params[0];
+//$selectedMethod = ($params[1] == null) ? "home" : $params[1];
 
 // removes the controller name and function from the array
 $params = array_splice($params, 2);
@@ -54,5 +75,7 @@ else if(count($params) % 2 == 0)
 //url couldn't be transformed into an associative array and the request is terminated with an error
 else
 {
-    throw new HttpMalformedURLException();
+    $index = new index();
+    $index->home();
+    //throw new HttpMalformedURLException();
 }

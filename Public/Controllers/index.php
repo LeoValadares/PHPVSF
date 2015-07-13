@@ -10,6 +10,7 @@ class index
 {
     function home()
     {
-        echo "hai";
+        $pageName = __CLASS__;
+        include(PATH . "/Public/Views/home.php");
     }
 } 

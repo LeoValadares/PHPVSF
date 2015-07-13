@@ -62,4 +62,9 @@ class ModelMapper implements IMapperInterface
 
         return $affectedRowsCount;
     }
+
+    public function getLastInsertedId()
+    {
+        return $this->databaseAdapter->getLastInsertedId();
+    }
 }

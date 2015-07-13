@@ -24,12 +24,12 @@ class CarroController implements IControllerInterface
 
     public function home()
     {
-
+        $pageName = __CLASS__;
+        include(PATH . "/Public/Views/home.php");
     }
 
     public function find($id)
     {
-        $this->loginManager->login();
         $object = $this->mapper->find($id);
         include(PATH . "/Public/Views/find.php");
     }
@@ -40,18 +40,46 @@ class CarroController implements IControllerInterface
         include(PATH . "/Public/Views/findAll.php");
     }
 
-    public function save(AbstractModel $instance)
+    public function save()
     {
-        // TODO: Implement save() method.
+        $this->loginManager->login();
+        if(isset($_POST['modelo']) && !empty($_POST['modelo']))
+        {
+            $carroToSave = new Carro();
+            $carroToSave->setModelo($_POST['modelo']);
+            $this->mapper->save($carroToSave);
+            $this->find($this->mapper->getLastInsertedId());
+        }
+        else
+        {
+            include(PATH . "/Public/Views/addCarro.php");
+        }
     }
 
-    public function update(AbstractModel $instance)
+    public function update($id)
     {
-        // TODO: Implement update() method.
+        $this->loginManager->login();
+        if(isset($_POST['id']) && isset($_POST['modelo']) && !empty($_POST['id']) && !empty($_POST['modelo']))
+        {
+            $carroToUpdate = new Carro();
+            $carroToUpdate->setId($_POST['id']);
+            $carroToUpdate->setModelo($_POST['modelo']);
+            $this->mapper->update($carroToUpdate);
+            $object = $carroToUpdate;
+            include(PATH . "/Public/Views/find.php");
+        }
+        else
+        {
+            $object = $this->mapper->find($id);
+            include(PATH . "/Public/Views/update.php");
+        }
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+        $this->loginManager->login();
+        $object = $this->mapper->find($id);
+        $this->mapper->delete($id);
+        include(PATH . "/Public/Views/find.php");
     }
 }

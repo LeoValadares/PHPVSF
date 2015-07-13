@@ -20,6 +20,6 @@ define("DB_HOST", "127.0.0.1");
 define("DB_NAME", "pdotest");
 define("DB_FQDN", DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME);
 define("DB_USER", "root");
-define("DB_PASSWORD", "");
-define("DB_APTIONS", null);
+define("DB_PASSWORD", "Leo@300694");
+define("DB_OPTIONS", null);
 
