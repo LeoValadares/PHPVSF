@@ -78,8 +78,7 @@ class CarroController implements IControllerInterface
     public function delete($id)
     {
         $this->loginManager->login();
-        $object = $this->mapper->find($id);
         $this->mapper->delete($id);
-        include(PATH . "/Public/Views/find.php");
+        header("Location: http://localhost/phpvsf/CarroController/findAll");
     }
 }
